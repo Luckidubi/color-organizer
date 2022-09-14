@@ -1,6 +1,7 @@
 import { useInput} from "./hooks";
+import{ useColors } from "./ColorProvider"
 
-function AddColorForm({onNewColor = f => f}){
+function AddColorForm(){
   // const txtTitle = useRef();  //useRef method
   // const hexColor = useRef();
   // const [title, setTitle] = useState("");  
@@ -8,10 +9,11 @@ function AddColorForm({onNewColor = f => f}){
 
   const [titleProps, resetTitle] = useInput("");
   const [colorProps, resetColor] = useInput("#000000");
+  const { addColor } = useColors();
 
   const submit = e => {
     e.preventDefault();
-    onNewColor(titleProps.value, colorProps.value);   // Custom hook method
+    addColor(titleProps.value, colorProps.value);   // Custom hook method
     resetTitle();
     resetColor();
     // onNewColor(title, color); //useState method
